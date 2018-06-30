@@ -9,7 +9,7 @@
 function! Send()
     let old_yank=@0
     let old_unnamed=@"
-    execute ".yank a"
+    execute ".delete a"
     "remove newline
     let @a=substitute(@a,"\n","","")
     let line="'".getpid() . " " . @a . "'"
@@ -18,24 +18,32 @@ function! Send()
     "reset yank and unnamed registers to original values
     let @0=old_yank
     let @"=old_unnamed
-    execute ":silent read! cat ~/shorthand/runtime/pipes/" . getpid()
+    "execute ":silent read! cat ~/shorthand/runtime/pipes/" . getpid()
+    let res=system("cat ~/shorthand/runtime/pipes/" . getpid())
+    "if strcharpart(res,strchars(res),1) == "{"
+    execute "call append(line('.')-1,res)"
+    normal k
+    redraw!
 endfunction
 
 function! Connect()
     echo "sending connect request"
     execute ":silent !mkfifo ~/shorthand/runtime/pipes/" . getpid()
-    echo "made pipe: " . getpid()
     execute ":silent !echo '".getpid()." connect ". expand('%:p') ."' > ~/shorthand/runtime/toserver"
-    echo "sent connection request"
-    execute ":silent read! cat ~/shorthand/runtime/pipes/" . getpid()
-    echo "read response"
+    "execute ":silent ! cat ~/shorthand/runtime/pipes/" . getpid()
+    echo system("cat ~/shorthand/runtime/pipes/" . getpid())
+    redraw!
 endfunction    
 
 function! Disconnect()
-    echo "sending disconnect request"
     execute ":silent !echo '".getpid()." disconnect' > ~/shorthand/runtime/toserver"
     execute ":silent read! cat ~/shorthand/runtime/pipes/" . getpid()
-    echo "read response"
     execute ":silent ! /bin/rm ~/shorthand/runtime/pipes/" . getpid()
-    echo "removed pipe: " .getpid()
+    redraw!
 endfunction
+
+function! Process(line)
+    echo "hi"
+endfunction
+
+
