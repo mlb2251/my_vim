@@ -1,0 +1,70 @@
+" vim-plug
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'Valloric/YouCompleteMe'
+"Plug 'w0rp/ale'
+"Plug 'nvie/vim-flake8'
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
+"let g:pymode_python = 'python3'
+"Plug 'vim-airline/vim-airline'
+"Plug 'tpope/vim-surround'
+"Plug 'https://github.com/prettier/prettier'
+"Plug 'mileszs/ack.vim.git'
+"Plug 'maxbrunsfeld/vim-yankstack.git'
+"Plug 'terryma/vim-multiple-cursors.git'
+"Plug 'michaeljsmith/vim-indent-object.git'
+"Plug 'tpope/vim-fugitive.git'
+"Plug 'terryma/vim-expand-region.git'
+"Plug 'tpope/vim-commentary.git'
+"Plug 'amix/open_file_under_cursor.vim.git'
+"Plug 'yegappan/mru.git'
+"Plug 'scrooloose/nerdtree.git'
+"Plug 'junegunn/goyo.vim.git'
+"Plug 'amix/vim-zenroom2.git'
+"Plug 'ctrlpvim/ctrlp.vim.git'
+"Plug 'vim-scripts/bufexplorer.zip.git'
+"Plug 'https://github.com/mbbill/undotree'
+"Plug 'https://github.com/scrooloose/nerdcommenter'
+"Plug 'https://github.com/vim-scripts/AutoClose.git'
+"Plug 'https://github.com/godlygeek/tabular'
+"Plug 'https://github.com/majutsushi/tagbar'
+"Plug 'https://github.com/easymotion/vim-easymotion'
+"Plug 'https://github.com/donRaphaco/neotex'
+"Plug 'https://github.com/brooth/far.vim'
+"Plug 'https://github.com/junegunn/fzf.vim.git'
+"Plug 'https://github.com/vimwiki/vimwiki'
+"Plug 'https://github.com/bfredl/nvim-ipy'
+"Plug 'https://github.com/c0r73x/neotags.nvim'
+"Plug 'https://github.com/zenbro/mirror.vim'
+"Plug 'https://github.com/numirias/semshi'
+"Plug 'https://github.com/neomake/neomake'
+" see the "completion" and "go to defns" and "find references" <https://github.com/w0rp/ale#usage-linting>
+
+" more dubious or not researched:
+"Plug 'https://github.com/critiqjo/lldb.nvim'
+"Plug 'https://github.com/bfredl/nvim-miniyank'
+"Plug 'https://github.com/teto/nvim-palette'
+"Plug 'https://github.com/previm/previm'
+"Plug 'https://github.com/andymass/vim-tradewinds'
+"Plug 'https://github.com/sakhnik/nvim-gdb'
+"Plug 'https://github.com/critiqjo/lldb.nvim'
+call plug#end()
+
+"Note: you should  look thru the big famous github vim
+"configurations/distributations with preloaded plugins because they're really
+"good for both plugin suggestions AND the customizations and keybindings that
+"they decide to use to interact even better with the plugins!
+
+"let g:ale_fixers = { 
+" \ 'python': [ 
+" \ 'autopep8', 
+" \ ], 
+" \}
+
+
+
+" load plugins then helptags
+" Plug may actually do this already idk
+packloadall
+silent! helptags ALL
+

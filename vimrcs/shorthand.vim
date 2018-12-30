@@ -1,3 +1,9 @@
+
+"function! Slim()
+inoremap <c-s> <esc>:call Send()<cr>
+nnoremap <c-s> :call Send()<cr><esc>
+"endfunction
+
 "VERY clever. using :read! cat mypipe instead of :read mypipe
 "bc read! reads the output of a command like cat, whereas :read
 "is supposed to read from the pipe but it fails and you have to
@@ -7,23 +13,35 @@
 "those using things like read! instead of read
 
 function! Send()
+    "normal mp
     let old_yank=@0
     let old_unnamed=@"
     execute ".delete a"
     "remove newline
     let @a=substitute(@a,"\n","","")
+    let @a=substitute(@a,"'","{slim_singlequote}","")
     let line="'".getpid() . " " . @a . "'"
+    echom line
     execute ":silent !echo ".line." > ~/shorthand/runtime/toserver"
-    "execute ":silent read! cat ~/shorthand/runtime/pipes/" . getpid()
     "reset yank and unnamed registers to original values
     let @0=old_yank
     let @"=old_unnamed
-    "execute ":silent read! cat ~/shorthand/runtime/pipes/" . getpid()
-    let res=system("cat ~/shorthand/runtime/pipes/" . getpid())
-    "if strcharpart(res,strchars(res),1) == "{"
-    execute "call append(line('.')-1,res)"
-    normal k
-    redraw!
+    let @b=system("cat ~/shorthand/runtime/pipes/" . getpid())
+    "echom strpart(@b,0,1)
+    if strpart(@b,0,1) == ":"
+        normal O
+        startinsert
+        redraw!
+        execute "echom '" . @b . "'"
+    else
+        execute "-1put b"
+        "now position cursor properly
+        execute "normal! ?({ins})\<cr>"
+        normal dab
+        "(type the key 'a' to append)
+        execute "call feedkeys('a', 'n')"
+        redraw!
+    endif
 endfunction
 
 function! Connect()

@@ -2,6 +2,36 @@ colorscheme molokai_modded
 syntax enable " enable syntax processing
 filetype plugin indent on "indent based on file type using .vim/indent files
 
+
+"function! GetHint()
+    
+"endfunction
+
+"function! SetHint()
+
+"endfunction
+
+
+function! Date()
+    :pu=strftime('%c')
+endfunction
+
+
+function! Llvm()
+    execute "%s/, align \\d//g"
+endfunction
+
+noremap <leader>l :call Llvm()<cr>
+
+
+"terminal mode escape
+tnoremap jk <C-\><C-n>
+tnoremap <Left> <C-\><C-n><C-w><Left>
+tnoremap <Right> <C-\><C-n><C-w><Right>
+tnoremap <Up> <C-\><C-n><C-w><Up>
+tnoremap <Down> <C-\><C-n><C-w><Down>
+
+
 source ~/.vim/vimrcs/shorthand.vim
 
 "adds the @peek decorator to a function by name (or just start of name)
@@ -88,6 +118,13 @@ noremap <leader>n :set number!<CR>
 "turn a function into a function prototype
 noremap <leader>d da}A;<esc>
 
+"ocaml comment at end of line
+noremap co A  (*  *)<esc>hhi
+"noremap cO (*  *)<esc>hhi
+inoremap ,,c (*  *)<esc>hhi
+inoremap ,,* (**  **)<esc>hhhi
+
+noremap c* A  (**  **)<esc>hhhi
 
 
 
@@ -100,11 +137,14 @@ noremap <leader>d da}A;<esc>
 "(remap spellcheck)
 
 
-
+"""visual mode remaps
+"apply dot command to all visual selection
+vnoremap . :normal .<cr>
 
 """insert mode remaps
 inoremap {<CR> {<CR>}<esc>O
-inoremap ;; {<CR>}<esc>O
+""" VERY USEFUL EXCEPT IN OCAML:
+"inoremap ;; {<CR>}<esc>O
 
 "convert visual selection to an insertable text line for a macro
 "vnoremap <leader>q yPgv:normal A<CR___><CR><ESC>gvgJ:s/___//g<CR>
@@ -156,10 +196,10 @@ nnoremap gV `[v`]
 inoremap jk <esc>
 
 "NOPs
-noremap <Up>    <Nop>
-noremap <Down>  <Nop>
-noremap <Left>  <Nop>
-noremap <Right> <Nop>
+noremap <Up>    <c-w><Up>
+noremap <Down>  <c-w><Down>
+noremap <Left>  <c-w><Left>
+noremap <Right> <c-w><Right>
 inoremap <Esc> <Nop>
 
 nnoremap <silent> <C-l> :nohl<CR><C-l>
@@ -197,7 +237,7 @@ set dir^=~/.backup//
 " Ignore case when searching
 " - override this setting by tacking on \c or \C to your search term to make
 "   your search always case-insensitive or case-sensitive, respectively.
-set ignorecase
+set smartcase
 
 "
 " End of Jae's Vim settings
@@ -227,4 +267,8 @@ function! HowLong( command, numberOfTimes )
   let &more = more
   return result
 endfunction
+
+source ~/.vim/vimrcs/mysyntax.vim
+
+
 
