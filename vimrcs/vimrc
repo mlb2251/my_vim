@@ -22,15 +22,11 @@ function! Llvm()
 endfunction
 
 noremap <leader>l :call Llvm()<cr>
+noremap <leader><space> :ALEToggle<cr>
 
 
 "terminal mode escape
 tnoremap jk <C-\><C-n>
-tnoremap <Left> <C-\><C-n><C-w><Left>
-tnoremap <Right> <C-\><C-n><C-w><Right>
-tnoremap <Up> <C-\><C-n><C-w><Up>
-tnoremap <Down> <C-\><C-n><C-w><Down>
-
 
 source ~/.vim/vimrcs/shorthand.vim
 
@@ -85,7 +81,7 @@ noremap <leader>fd :call FindDelete()<cr>
 noremap <leader>fr :call FindReplace()<cr>
 
 noremap <leader>c :call Connect()<cr>
-noremap <leader><space> :call Send()<cr>
+"noremap <leader><space> :call Send()<cr>
 
 """"""Matt's shortcuts
 

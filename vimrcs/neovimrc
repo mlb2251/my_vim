@@ -1,8 +1,27 @@
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Valloric/YouCompleteMe'
-"Plug 'w0rp/ale'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'w0rp/ale'
+"let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let b:ale_linters = ['pyflakes', 'clang', 'clang-tidy']
+"let b:ale_fixers = ['clang-format']
+"/Users/matthewbowers/Documents/linux-headers/include"
+"let b:ale_c_clang_options = '-I/Users/matthewbowers/Documents/linux-headers/include -I/Users/matthewbowers/Documents/linux-headers -I/Users/matthewbowers/Documents/linux-headers/generated -I/Users/matthewbowers/Documents/linux-headers/uapi'
+"let b:ale_c_gcc_options = '-I/Users/matthewbowers/Documents/linux-headers/include -I/Users/matthewbowers/Documents/linux-headers -I/Users/matthewbowers/Documents/linux-headers/generated -I/Users/matthewbowers/Documents/linux-headers/uapi'
+
+
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
 "Plug 'nvie/vim-flake8'
 "Plug 'python-mode/python-mode', { 'branch': 'develop' }
 "let g:pymode_python = 'python3'
@@ -67,4 +86,6 @@ call plug#end()
 " Plug may actually do this already idk
 packloadall
 silent! helptags ALL
+
+
 

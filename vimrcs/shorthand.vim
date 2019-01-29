@@ -60,8 +60,4 @@ function! Disconnect()
     redraw!
 endfunction
 
-function! Process(line)
-    echo "hi"
-endfunction
-
 

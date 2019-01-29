@@ -1,4 +1,3 @@
-syn match cuda /cuda/
 
 "
 "
@@ -339,5 +338,8 @@ let b:current_syntax = "python"
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
+
+syn match cuda /cuda/
+syn match comment2 /##.*/
 
 " vim:set sw=2 sts=2 ts=8 noet:

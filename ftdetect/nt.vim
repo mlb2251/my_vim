@@ -1,1 +1,1 @@
-autocmd BufRead,BufNewFile *.nt set filetype=nt
+au BufRead,BufNewFile *.nt set filetype=nt
