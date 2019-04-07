@@ -1,7 +1,15 @@
 colorscheme molokai_modded
 syntax enable " enable syntax processing
 filetype plugin indent on "indent based on file type using .vim/indent files
+set nocompatible
 
+set number relativenumber
+
+set linebreak "make line wrapping not break words in half
+set breakindent "line wraps on a line that is indented are also indented
+" the single space after each \ is vital. makes it so all wrapped lines are
+" indented with extra spaces
+set breakindentopt=shift:2
 
 "function! GetHint()
     
@@ -109,7 +117,7 @@ noremap <leader>r diw"0Pb
 noremap <leader>R diW"0Pb
 
 "toggle line nums
-noremap <leader>n :set number!<CR>
+noremap <leader>n :set number! relativenumber!<CR>
 
 "turn a function into a function prototype
 noremap <leader>d da}A;<esc>
@@ -191,13 +199,28 @@ nnoremap gV `[v`]
 
 inoremap jk <esc>
 
-"NOPs
-noremap <Up>    <c-w><Up>
-noremap <Down>  <c-w><Down>
-noremap <Left>  <c-w><Left>
-noremap <Right> <c-w><Right>
+noremap <s-Up>    <c-w><Up>
+noremap <s-Down>  <c-w><Down>
+noremap <s-Left>  <c-w><Left>
+noremap <s-Right> <c-w><Right>
+
+noremap <Down>    <c-f>M
+noremap <Up>      <c-b>M
+noremap <Left>    100kzz
+noremap <Right>   100jzz
+noremap g1 Hzz
+"todo implement 2 and 4 to do jumps to mid-hi and mid-low
+"noremap g2 Hzz
+noremap g3 Mzz
+"noremap g4 Hzz
+noremap g5 Lzz
+
+"reload vimrc with esc
+noremap <Esc> :source ~/.vimrc<CR>
+
 inoremap <Esc> <Nop>
 
+"c-l does nohl then also calls the original c-l!
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 

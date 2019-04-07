@@ -283,11 +283,15 @@ hi def link rustBoxPlacementParens Delimiter
 hi def link rustQuestionMark  Special
 
 " Other Suggestions:
-" hi rustAttribute ctermfg=cyan
-" hi rustDerive ctermfg=cyan
-" hi rustAssert ctermfg=yellow
-" hi rustPanic ctermfg=red
-" hi rustMacro ctermfg=magenta
+"hi rustAttribute ctermfg=cyan
+"hi rustDerive ctermfg=cyan
+hi rustAssert ctermfg=yellow
+hi rustPanic ctermfg=red
+hi rustMacro ctermfg=magenta
+
+"syn match test /\#!\?[.*\]/
+syn match mattAttribute /\#!\?\[.*\]/
+hi mattAttribute ctermfg=245
 
 syn sync minlines=200
 syn sync maxlines=500

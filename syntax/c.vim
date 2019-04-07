@@ -483,6 +483,12 @@ hi def link cCppInElse2		cCppOutIf2
 hi def link cCppOutIf2		cCppOut
 hi def link cCppOut		Comment
 
+
+syn match matt_arrow /->/
+hi matt_arrow ctermfg=166
+syn match amper /&/
+hi amper ctermfg=166 cterm=bold
+
 let b:current_syntax = "c"
 
 unlet s:ft

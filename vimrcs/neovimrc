@@ -1,6 +1,10 @@
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'https://github.com/scrooloose/nerdtree.git'
+
+map <C-n> :NERDTreeToggle<CR>
+
 "Plug 'Valloric/YouCompleteMe'
 Plug 'w0rp/ale'
 "let g:ale_lint_on_text_changed = 'never'
@@ -21,6 +25,8 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
+" make tab complete work
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 "Plug 'nvie/vim-flake8'
 "Plug 'python-mode/python-mode', { 'branch': 'develop' }
