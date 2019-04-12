@@ -3,7 +3,7 @@ syntax enable " enable syntax processing
 filetype plugin indent on "indent based on file type using .vim/indent files
 set nocompatible
 
-set number relativenumber
+set number
 
 set linebreak "make line wrapping not break words in half
 set breakindent "line wraps on a line that is indented are also indented
@@ -204,8 +204,9 @@ noremap <s-Down>  <c-w><Down>
 noremap <s-Left>  <c-w><Left>
 noremap <s-Right> <c-w><Right>
 
-noremap <Down>    <c-f>M
-noremap <Up>      <c-b>M
+" <c-d><c-d> is better behaved than <c-f>
+noremap <Down>    ztLzz
+noremap <Up>      zbHzz
 noremap <Left>    100kzz
 noremap <Right>   100jzz
 noremap g1 Hzz
