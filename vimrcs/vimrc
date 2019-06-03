@@ -212,7 +212,8 @@ noremap g3 Mzz
 noremap g5 Lzz
 
 "reload vimrc with esc
-noremap <Esc> :source ~/.vimrc<CR>
+"Seems to mess us up sometimes by dropping us into REPLACE mode automatically
+"noremap <Esc> :source ~/.vimrc<CR>
 
 inoremap <Esc> <Nop>
 
