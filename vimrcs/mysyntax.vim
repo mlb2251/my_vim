@@ -17,6 +17,12 @@ hi time ctermfg=168
 hi nocolor ctermfg=white
 hi whilerun ctermfg=green
 hi cuda ctermfg=green
+hi mlb_tokens ctermfg=yellow
+hi mlb_states ctermfg=135
+hi mlb_self ctermfg=245
+hi mlb_paren ctermfg=245
+hi mlb_bracket ctermfg=245
+hi mlb_actions ctermfg=red
 
 hi comment2 ctermfg=green
 hi comment3 ctermfg=yellow

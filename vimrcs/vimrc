@@ -1,82 +1,72 @@
 colorscheme molokai_modded
+
+""" GENERAL SETTINGS
+
 syntax enable " enable syntax processing
 filetype plugin indent on "indent based on file type using .vim/indent files
 set nocompatible
 
-set number
 
+" by setting ignorecase=True and smartcase=True we default to ignoring case
+" then override it when captial letters are used
+set ignorecase
+set smartcase
+
+
+" LINE DISPLAYING
+set display+=lastline " don't replace last lines with @@@ symbols when full line can't be shown
 set linebreak "make line wrapping not break words in half
 set breakindent "line wraps on a line that is indented are also indented
 " the single space after each \ is vital. makes it so all wrapped lines are
 " indented with extra spaces
 set breakindentopt=shift:2
-
-"function! GetHint()
-    
-"endfunction
-
-"function! SetHint()
-
-"endfunction
+set number
 
 
-function! Date()
-    :pu=strftime('%c')
-endfunction
+
+" TABS
+set expandtab "replace tabs w spaces
+set shiftwidth=4 "when you do >> or autoindentation happens it uses 4 spaces
+set tabstop=4 " purely appearance I think - tabs look like 4 spaces
+set softtabstop=4 "when you press TAB it inserts 4 spaces
+autocmd FileType make setlocal noexpandtab "makefiles break if you use spaces instead of tabs
+" When coding, auto-indent by 4 spaces, just like in K&R
+" Note that this does NOT change tab into 4 spaces
+" You can do that with "set tabstop=4", which is a BAD idea
+set shiftwidth=4
 
 
-function! Llvm()
-    execute "%s/, align \\d//g"
-endfunction
+" Prepend (ie ^=) ~/.backup to backupdir so that Vim will look for that directory
+" before littering the current dir with backups.
+" You need to do "mkdir ~/.backup" for this to work.
+set backupdir^=~/.backup
+
+" `dir` is used for swapfiles. It's a list of directories and the first
+" one that works is used. Here we prepend, so really all our swaps will end up
+" in ~/.backup now. The trailing // tells Vim to incorporate full path into swap file names.
+set dir^=~/.backup//
+
+
+
+""" NORMAL MODE REMAPS
 
 noremap <leader>l :call Llvm()<cr>
 noremap <leader><space> :ALEToggle<cr>
 
+""" TERM MODE REMAPS
 
 "terminal mode escape
 tnoremap jk <C-\><C-n>
 
-source ~/.vim/vimrcs/shorthand.vim
-
-"adds the @peek decorator to a function by name (or just start of name)
-function! Peek(name)
-    normal mp
-    execute "/def " . a:name
-    normal O@peek
-    normal `p
-endfunction
-
-"adds the @timeit decorator to a function by name (or just start of name)
-function! Timeit(name)
-    normal mp
-    execute "/def " . a:name
-    normal O@timeit
-    normal `p
-endfunction
-
-function! FindDelete()
-    let c = nr2char(getchar())
-    execute "normal! mpf" . c . "x`p"
-endfunction
-
-function! FindReplace()
-    let f = nr2char(getchar())
-    let r = nr2char(getchar())
-    execute "normal! mpf" . f . "r" . r . "`p"
-endfunction
+""" INSERT MODE REMAPS
+inoremap <special> <expr> <Esc>[200~ DoPaste()
+"        ^         ^  not sure what these are for
 
 
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
-function! DoPaste() "the ! means overwrite funct if it exists already
-    set pastetoggle=<Esc>[201~
-    set paste
-    return ""
-endfunction
 
-inoremap <special> <expr> <Esc>[200~ DoPaste()
-"        ^         ^  not sure what these are for
 
 "<l>s<any><any> for sub char
 "<l>x<any> for del char
@@ -118,7 +108,7 @@ noremap <leader>r diw"0Pb
 noremap <leader>R diW"0Pb
 
 "toggle line nums
-noremap <leader>n :set number! relativenumber!<CR>
+noremap <leader>n :set number!<CR>
 
 "turn a function into a function prototype
 noremap <leader>d da}A;<esc>
@@ -200,14 +190,18 @@ nnoremap gV `[v`]
 
 inoremap jk <esc>
 
+noremap <c-p> "0p
+noremap <c-P> "0P
+
 noremap <s-Up>    <c-w><Up>
 noremap <s-Down>  <c-w><Down>
 noremap <s-Left>  <c-w><Left>
 noremap <s-Right> <c-w><Right>
 
 " <c-d><c-d> is better behaved than <c-f>
-noremap <Down>    ztLzz
-noremap <Up>      zbHzz
+"noremap <Down>    ztLzz
+noremap <Down>    Lzz
+noremap <Up>      Hzz
 noremap <Left>    100kzz
 noremap <Right>   100jzz
 noremap g1 Hzz
@@ -234,46 +228,11 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 :nnoremap <D-Left> :bprevious<CR>
 :nnoremap <M-Left> :bprevious<CR>
 
-" When coding, auto-indent by 4 spaces, just like in K&R
-" Note that this does NOT change tab into 4 spaces
-" You can do that with "set tabstop=4", which is a BAD idea
-set shiftwidth=4
-
-" Always replace tab with 8 spaces, except for makefiles
-set expandtab
-autocmd FileType make setlocal noexpandtab
-
-" Don't do spell-checking on Vim help files
-autocmd FileType help setlocal nospell
-
-" Prepend ~/.backup to backupdir so that Vim will look for that directory
-" before littering the current dir with backups.
-" You need to do "mkdir ~/.backup" for this to work.
-set backupdir^=~/.backup
-
-" Also use ~/.backup for swap files. The trailing // tells Vim to incorporate
-" full path into swap file names.
-set dir^=~/.backup//
-
-" Ignore case when searching
-" - override this setting by tacking on \c or \C to your search term to make
-"   your search always case-insensitive or case-sensitive, respectively.
-set smartcase
-
-"
-" End of Jae's Vim settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"The tab settings I like
-set expandtab "replace tabs w spaces
-set shiftwidth=4 "when you do >> or autoindentation happens it uses 4 spaces
-set tabstop=4 " purely appearance I think - tabs look like 4 spaces
-set softtabstop=4 "when you press TAB it inserts 4 spaces
-autocmd FileType make setlocal noexpandtab "makefiles break if you use spaces instead of tabs
 
 
 
 
+""" FUNCTIONS
 " Times the number of times a particular command takes to execute the specified number of times (in seconds).
 function! HowLong( command, numberOfTimes )
   " We don't want to be prompted by a message if the command being tried is
@@ -289,7 +248,47 @@ function! HowLong( command, numberOfTimes )
   return result
 endfunction
 
+function! Date()
+    :pu=strftime('%c')
+endfunction
+
+function! Llvm()
+    execute "%s/, align \\d//g"
+endfunction
+
+"adds the @peek decorator to a function by name (or just start of name)
+function! Peek(name)
+    normal mp
+    execute "/def " . a:name
+    normal O@peek
+    normal `p
+endfunction
+
+"adds the @timeit decorator to a function by name (or just start of name)
+function! Timeit(name)
+    normal mp
+    execute "/def " . a:name
+    normal O@timeit
+    normal `p
+endfunction
+
+function! FindDelete()
+    let c = nr2char(getchar())
+    execute "normal! mpf" . c . "x`p"
+endfunction
+
+function! FindReplace()
+    let f = nr2char(getchar())
+    let r = nr2char(getchar())
+    execute "normal! mpf" . f . "r" . r . "`p"
+endfunction
+
+function! DoPaste() "the ! means overwrite funct if it exists already
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+endfunction
+
+
+source ~/.vim/vimrcs/shorthand.vim
 source ~/.vim/vimrcs/mysyntax.vim
-
-
-
