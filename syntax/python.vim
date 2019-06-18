@@ -97,7 +97,7 @@ endif
 "
 syn keyword pythonStatement	False None True
 syn keyword pythonStatement	as assert break continue del exec global
-syn keyword pythonStatement	lambda nonlocal pass print return with yield
+syn keyword pythonStatement	lambda nonlocal pass print return with yield match when argmatch threaded compiled newtype nobreak where
 syn keyword pythonStatement	class def nextgroup=pythonFunction skipwhite
 syn keyword pythonConditional	elif else if
 syn keyword pythonRepeat	for while
@@ -339,7 +339,7 @@ let b:current_syntax = "python"
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
-syn match cuda /cuda/
+syn keyword cuda cuda
 syn match comment2 /##.*/
 
 syn keyword mlb_tokens WHITESPACE COMMA COLON EXCLAM PERIOD EQ SH_LBRACE SH_LINESTART LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET ESCQUOTE2 ESCQUOTE1 QUOTE2 QUOTE1 DOLLARESC DOLLARPAREN DOLLARVAR ID INTEGER UNKNOWN SOL EOL SH SH_LPAREN HASH PIPE SEMICOLON NEWLINE LEQ LT GEQ GT NEQ IS ISNOT IN NOTIN ADD SUB MUL DIV FLOORDIV MOD EXP SHIFTRIGHT SHIFTLEFT BITAND BITOR BITXOR ADD SUB NEG INVERT AND OR NOT ASN KEYWORD PYPAREN

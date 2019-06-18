@@ -1,6 +1,7 @@
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 
 map <C-n> :NERDTreeToggle<CR>
