@@ -96,7 +96,7 @@ endif
 " - async and await were added in Python 3.5 and are soft keywords.
 "
 syn keyword pythonStatement	False None True
-syn keyword pythonStatement	as assert break continue del exec global
+syn keyword pythonStatement	as break continue del exec global
 syn keyword pythonStatement	lambda nonlocal pass print return with yield
 syn keyword pythonStatement	class def nextgroup=pythonFunction skipwhite
 syn keyword pythonConditional	elif else if
@@ -133,7 +133,7 @@ syn match   pythonMatrixMultiply
 
 syn match   pythonFunction	"\h\w*" display contained
 
-syn match   pythonComment	"#.*$" contains=pythonTodo,@Spell
+syn match   pythonComment	"#.*$" contains=pythonTodo,@Spell,mlb_todo
 syn keyword pythonTodo		FIXME NOTE NOTES TODO XXX contained
 
 " Triple-quoted strings can contain doctests.
@@ -339,8 +339,24 @@ let b:current_syntax = "python"
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
-syn match cuda /cuda/
 syn match comment2 /##.*/
+
+syn keyword green green cuda
+syn keyword red red die
+syn keyword yellow yellow info warn
+syn keyword purple purple
+syn keyword blue blue
+syn keyword cyan cyan
+
+hi green ctermfg=green
+hi red ctermfg=red
+hi yellow ctermfg=yellow
+hi purple ctermfg=magenta
+hi blue ctermfg=blue
+hi cyan ctermfg=cyan
+
+syn match mlb_assert /^\s\+assert.*/
+hi mlb_assert ctermfg=241 cterm=bold
 
 syn keyword mlb_tokens WHITESPACE COMMA COLON EXCLAM PERIOD EQ SH_LBRACE SH_LINESTART LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET ESCQUOTE2 ESCQUOTE1 QUOTE2 QUOTE1 DOLLARESC DOLLARPAREN DOLLARVAR ID INTEGER UNKNOWN SOL EOL SH SH_LPAREN HASH PIPE SEMICOLON NEWLINE LEQ LT GEQ GT NEQ IS ISNOT IN NOTIN ADD SUB MUL DIV FLOORDIV MOD EXP SHIFTRIGHT SHIFTLEFT BITAND BITOR BITXOR ADD SUB NEG INVERT AND OR NOT ASN KEYWORD PYPAREN
 
@@ -350,6 +366,12 @@ syn keyword mlb_self self
 
 syn match mlb_paren /(\|)/
 syn match mlb_bracket /\[\|\]/
+syn keyword mlb_todo TODO CHECK QQ IDEA IMPROVE TEMP
+" CHECK = check this over, if a prob comes up it might be this
+" QQ = question
+" IDEA = an idea you _might_ want to try
+" IMPROVE = a way to improve it that you _def_ want to try
+" TEMP = flag something as temporary to be replaced
 
 " vim:set sw=2 sts=2 ts=8 noet:
 "
