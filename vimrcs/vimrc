@@ -1,5 +1,11 @@
 colorscheme molokai_modded
 
+autocmd BufNewFile,BufRead *.xsh set syntax=python
+autocmd BufNewFile,BufRead xonshrc set syntax=python
+autocmd BufNewFile,BufRead .xonshrc set syntax=python
+
+set rtp+=/usr/local/opt/fzf
+
 """ GENERAL SETTINGS
 
 syntax enable " enable syntax processing
@@ -152,7 +158,9 @@ iabbrev teh the
 "create testfile in c
 iabbrev waht what
 
-let python_highlight_all=1
+" This highlighting of hanging whitespace is actually real annoying and
+" doesnt cause an error anyways
+"let python_highlight_all=1
 
 set number " line #s
 set showcmd	"show cmd in bottom bar

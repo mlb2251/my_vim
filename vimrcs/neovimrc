@@ -1,8 +1,11 @@
 " vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'jacobsimpson/nvim-example-python-plugin'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'https://github.com/scrooloose/nerdtree.git'
+"Plug 'meatballs/vim-xonsh'
+"Plug 'linkinpark342/xonsh-vim'
 
 map <C-n> :NERDTreeToggle<CR>
 
