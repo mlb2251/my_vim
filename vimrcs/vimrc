@@ -1,8 +1,8 @@
 colorscheme molokai_modded
 
-autocmd BufNewFile,BufRead *.xsh set syntax=python
-autocmd BufNewFile,BufRead xonshrc set syntax=python
-autocmd BufNewFile,BufRead .xonshrc set syntax=python
+autocmd BufNewFile,BufRead *.xsh set filetype=python
+autocmd BufNewFile,BufRead xonshrc set filetype=python
+autocmd BufNewFile,BufRead .xonshrc set filetype=python
 
 set rtp+=/usr/local/opt/fzf
 

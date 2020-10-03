@@ -368,6 +368,10 @@ syn keyword mlb_self self
 syn match mlb_paren /(\|)/
 syn match mlb_bracket /\[\|\]/
 syn keyword mlb_todo TODO CHECK QQ IDEA IMPROVE TEMP
+
+syn match xsh_var /\$\w\+/
+hi xsh_var ctermfg=208
+
 " CHECK = check this over, if a prob comes up it might be this
 " QQ = question
 " IDEA = an idea you _might_ want to try
