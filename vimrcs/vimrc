@@ -45,18 +45,18 @@ set shiftwidth=4
 " Prepend (ie ^=) ~/.backup to backupdir so that Vim will look for that directory
 " before littering the current dir with backups.
 " You need to do "mkdir ~/.backup" for this to work.
-set backupdir^=~/.backup
+"set backupdir^=~/.backup
 
 " `dir` is used for swapfiles. It's a list of directories and the first
 " one that works is used. Here we prepend, so really all our swaps will end up
 " in ~/.backup now. The trailing // tells Vim to incorporate full path into swap file names.
-set dir^=~/.backup//
+" set dir^=~/.backup//
 
 
 
 """ NORMAL MODE REMAPS
 
-noremap <leader>l :call Llvm()<cr>
+"noremap <leader>l :call Llvm()<cr>
 noremap <leader><space> :ALEToggle<cr>
 
 """ TERM MODE REMAPS
@@ -84,7 +84,7 @@ let &t_EI .= "\<Esc>[?2004l"
 noremap <leader>fd :call FindDelete()<cr>
 noremap <leader>fr :call FindReplace()<cr>
 
-noremap <leader>c :call Connect()<cr>
+"noremap <leader>c :call Connect()<cr>
 "noremap <leader><space> :call Send()<cr>
 
 """"""Matt's shortcuts
